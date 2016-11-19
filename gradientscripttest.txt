@@ -1,0 +1,30 @@
+for i in range(0,10):
+        print('iteration===',i)
+        print('Guess2===',guess2[0])
+        if ((guess2[0] + 100*grad)<0):
+            print('firstnegcheck')
+            grad=-grad   
+        guess2[0] = guess2[0] + 100*grad
+        guesseval = pixelcost(sumfunc(guess))
+        guess2eval = pixelcost(sumfunc(guess2))
+        if (guess2eval > guesseval):
+            print('worse')
+            guess2[0] = guess2[0] - 100*grad
+            if ((guess2[0]-100*grad) > 0):
+                guess2[0] = guess2[0] - 100*grad
+                grad=-grad
+            elif ((guess2[0]-100*grad) < 0):
+                guess2[0] = guess2[0] + 100*bleh*grad
+                bleh+=1
+                print('scaler-bleh ===',bleh)
+        elif(guess2eval < guesseval):
+            print('better')
+            guess[0] = guess2[0]
+        elif(guess2eval == guesseval):
+            print('equal')
+            randnum = np.random.rand(1)
+            if randnum <.5:
+                grad=-grad
+            else:
+                grad=grad
+    print(guess)
