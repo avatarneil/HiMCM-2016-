@@ -69,15 +69,10 @@ def minimize() :
             
     
     
+guess3=[3,86,123,175,173,215,290,219,348,334,563,500,504,522,545,437,484,510,538,546,387,324,356,332,378,398]
+whichpixel=sumfunc(guess3)
     
-    
-    
-    
-    
-    
-    
-    
-minimize()
+
 for i in range(692):
     if (i<10):
         u="000"+str(i)
@@ -91,5 +86,5 @@ for i in range(692):
 
 whichpixel = np.array(whichpixel)
 warehouselist=np.array(warehouselist)
-whichpixel.tofile('whichpixel.csv',sep=',',format='%10.5f')
+whichpixel.tofile('whichpixel2.csv',sep=',',format='%10.5f')
 #guesssum.tofile('guesssum.csv',sep=',',format='%10.5f')
