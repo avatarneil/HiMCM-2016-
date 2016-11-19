@@ -8,6 +8,7 @@ positionData = np.array(positionData)
 americaData = np.array(americaData)
 warehouselist=[]
 guess=[3,86,123,175,153,195,260,179,308,334,563,490,504,522,545,437,484,510,508,496,387,254,286,332,378,398]
+guessinit =[3,86,123,175,153,195,260,179,308,334,563,490,504,522,545,437,484,510,508,496,387,254,286,332,378,398]
 #uess=np.array(guess)
 
 whichpixel=[0 for x in range(192738)]
@@ -26,10 +27,13 @@ def pixelcost(listentry):
     for i in range(0,192511):
         if ((americaData[0][i]=='1') and (listentry[i]==0)):
             pixcost+=1
-    return pixcost     
-def minimize() :    
-    guess2=[3,86,123,175,153,195,260,179,308,334,563,490,504,522,545,437,484,510,508,496,387,254,286,332,378,398]
+    return pixcost    
     
+
+    
+def minimize() :    
+  #  guess2=[3,86,123,175,153,195,260,179,308,334,563,490,504,522,545,437,484,510,508,496,387,254,286,332,378,398]
+    guess2=[423,392,358,549,165,45,90,471,301,361,362,15,46,268,338,452,269,246,340,238]
 
     incfact=1
    
@@ -37,10 +41,15 @@ def minimize() :
         a=0
         inc=10*incfact
         i=0
-        while (i<25):
+        print(k)
+        print('Current improvement: ' + str(pixelcost(sumfunc(guessinit)) - pixelcost(sumfunc(guess))))
+        while (i<20):
             print('i =' + str(i))
-            if ((guess2[i]+inc)<=691):
+            if (((guess2[i]+inc)<691) and ((guess2[i] + inc) > 0)):
                 guess2[i] += inc
+            elif (((guess2[i]+inc)<691) and ((guess2[i] + inc) <= 0)):
+                guess2[i]=abs(guess2[i]+inc)
+                print('negativeflip')
             print('guess i is ' + str(guess[i]))
             print('guess2 i is ' + str(guess2[i]))
         
@@ -60,22 +69,21 @@ def minimize() :
             elif ((cost2 >= cost) and (a==1)):
                 print('worse not first time')
                 inc=10*incfact
+                guess2[i]=guess[i]
                 i+=1
                 a=0
+                
              
             print('moving on')
             
-        incfact+=1 
-            
+        incfact+=1
+        
+        print(guess)
+        print(guess2)
     
     
-guess3=[3,86,123,175,173,215,290,219,348,334,563,500,504,522,545,437,484,510,538,546,387,324,356,332,378,398]
-guess4=[3,86,123,175,153,195,270,179,318,334,563,500,504,522,545,437,484,510,508,496,387,254,286,332,378,398]
-print(pixelcost(sumfunc(guess)))
-print(pixelcost(sumfunc(guess3)))
-print(pixelcost(sumfunc(guess4)))
     
-
+minimize()
 for i in range(692):
     if (i<10):
         u="000"+str(i)
@@ -89,5 +97,5 @@ for i in range(692):
 
 whichpixel = np.array(whichpixel)
 warehouselist=np.array(warehouselist)
-#whichpixel.tofile('whichpixel3.csv',sep=',',format='%10.5f')
+whichpixel.tofile('whichpixel.csv',sep=',',format='%10.5f')
 #guesssum.tofile('guesssum.csv',sep=',',format='%10.5f')

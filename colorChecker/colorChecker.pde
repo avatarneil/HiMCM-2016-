@@ -4,7 +4,7 @@ PrintWriter output;
 Table data;
 //int[] data = loadStrings ("scribs.txt");
 void setup() {
-  data = loadTable("whichpixel2.csv");
+  data = loadTable("manualguess5.csv");
   //println(data.getRowCount());
   size(546, 353);
   output = createWriter("america.csv");
