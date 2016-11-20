@@ -12,6 +12,7 @@ warehouselist=[]
 guess=[3,0,123,0,153,195,260,179,308,334,563,0,504,522,545,437,484,510,508,496,387,254,286,332,378,398]
 guessinit=[3,0,123,0,153,195,260,179,308,334,563,0,504,522,545,437,484,510,508,496,387,254,286,332,378,398]
 #uess=np.array(guess)
+manualguess5=[423,392,358,549,165,45,90,471,301,361,362,15,46,268,338,452,269,246,340,238]
 
 whichpixel=[0 for x in range(192738)]
 zerotest=0
@@ -42,8 +43,8 @@ def pixelcost(listentry):
             pixcost+=1
     return pixcost    
     
-#[3, 66, 73, 175, 173, 425, 320, 21, 298, 334, 563, 500, 504, 522, 545, 437, 314, 510, 468, 536, 367, 554, 266, 342, 478, 398]
-
+bestguess=[3, 66, 73, 175, 173, 425, 320, 21, 298, 334, 563, 500, 504, 522, 545, 437, 314, 510, 468, 536, 367, 554, 266, 342, 478, 398]
+bestguess2=[3, 66, 73, 173, 425, 320, 21, 298, 334, 563, 500, 504, 522, 545, 437, 314, 510, 468, 536, 367, 554, 266, 342, 478, 398,493,479]
     
 def minimize() :    
   #  guess2=[3,86,123,175,153,195,260,179,308,334,563,490,504,522,545,437,484,510,508,496,387,254,286,332,378,398]
@@ -100,8 +101,7 @@ def minimize() :
         print(guess2)
     
     
-    
-minimize()
+
 for i in range(692):
     if (i<10):
         u="000"+str(i)
@@ -112,8 +112,9 @@ for i in range(692):
     elif (i<1000):
         u="0"+str(i)
         warehouselist.append(u)
+whichpixel = sumfunc(bestguess2)
 
 whichpixel = np.array(whichpixel)
 warehouselist=np.array(warehouselist)
-whichpixel.tofile('whichpixel.csv',sep=',',format='%10.5f')
+whichpixel.tofile('bestguess3.csv',sep=',',format='%10.5f')
 #guesssum.tofile('guesssum.csv',sep=',',format='%10.5f')
